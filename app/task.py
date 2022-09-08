@@ -36,16 +36,16 @@ def extract_data(filepath, file):
         else:
             if year_difference == 0 or year_difference == -1:
                 data.iat[row, index_monthly_installment] = 350
-                data.iat[row, index_number_of_months] = int(np.around(npf.nper(interest_rate, -350, data.iat[row, index_balance])))
-                data.iat[row, index_projected_amount] = int(350 * np.around(npf.nper(interest_rate, -350, data.iat[row, index_balance])))
+                data.iat[row, index_number_of_months] = 1 + int(np.around(npf.nper(interest_rate, -350, data.iat[row, index_balance])))
+                data.iat[row, index_projected_amount] = int(350 * (1 + np.around(npf.nper(interest_rate, -350, data.iat[row, index_balance]))))
             elif year_difference == -2 or year_difference == -3:
                 data.iat[row, index_monthly_installment] = 400
-                data.iat[row, index_number_of_months] = int(np.around(npf.nper(interest_rate, -400, data.iat[row, index_balance])))
-                data.iat[row, index_projected_amount] = int(400 * (np.around(npf.nper(interest_rate, -400, data.iat[row, index_balance]))))
+                data.iat[row, index_number_of_months] = 1 + int(np.around(npf.nper(interest_rate, -400, data.iat[row, index_balance])))
+                data.iat[row, index_projected_amount] = int(400 * (1 + np.around(npf.nper(interest_rate, -400, data.iat[row, index_balance]))))
             else:
                 data.iat[row, index_monthly_installment] = 500
-                data.iat[row, index_number_of_months] = int(np.around(npf.nper(interest_rate, -500, data.iat[row, index_balance])))
-                data.iat[row, index_projected_amount] = int(500 * (np.around(npf.nper(interest_rate, -500, data.iat[row, index_balance]))))
+                data.iat[row, index_number_of_months] = 1 + int(np.around(npf.nper(interest_rate, -500, data.iat[row, index_balance])))
+                data.iat[row, index_projected_amount] = int(500 * (1 + np.around(npf.nper(interest_rate, -500, data.iat[row, index_balance]))))
 
     save_extract_path = os.path.join(app.config["EXTRACTION_FILE_PATH"], "Extraction.xlsx")
 
